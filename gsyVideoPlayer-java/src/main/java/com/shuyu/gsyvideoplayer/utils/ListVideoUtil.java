@@ -558,7 +558,7 @@ public class ListVideoUtil {
      * 获取当前总时长
      */
     public long getDuration() {
-        return gsyVideoPlayer.getDuration();
+        return gsyVideoPlayer.getVideoDuration();
     }
 
 

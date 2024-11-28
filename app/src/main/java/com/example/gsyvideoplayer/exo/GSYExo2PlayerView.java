@@ -239,7 +239,7 @@ public class GSYExo2PlayerView extends StandardGSYVideoPlayer {
                 addTextureView();
             }
             try {
-                long time = seekBar.getProgress() * getDuration() / 100;
+                long time = seekBar.getProgress() * getVideoDuration() / 100;
                 getGSYVideoManager().seekTo(time);
             } catch (Exception e) {
                 Debuger.printfWarning(e.toString());

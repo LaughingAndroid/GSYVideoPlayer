@@ -3,8 +3,6 @@ package com.shuyu.gsyvideoplayer.video.base;
 import android.app.Activity;
 import android.content.Context;
 import android.media.AudioManager;
-import android.os.Handler;
-import android.os.Looper;
 
 import androidx.annotation.AttrRes;
 import androidx.annotation.NonNull;
@@ -33,8 +31,6 @@ import com.shuyu.gsyvideoplayer.utils.Debuger;
 
 import java.io.File;
 import java.util.Map;
-import java.util.Timer;
-import java.util.TimerTask;
 
 
 import static com.shuyu.gsyvideoplayer.utils.CommonUtil.hideNavKey;
@@ -614,7 +610,7 @@ public abstract class GSYVideoControlView extends GSYVideoView implements View.O
         }
         if (getGSYVideoManager() != null && mHadPlay) {
             try {
-                long time = seekBar.getProgress() * getDuration() / 100;
+                long time = seekBar.getProgress() * getVideoDuration() / 100;
                 getGSYVideoManager().seekTo(time);
             } catch (Exception e) {
                 Debuger.printfWarning(e.toString());
@@ -686,7 +682,7 @@ public abstract class GSYVideoControlView extends GSYVideoView implements View.O
 
     protected void showDragProgressTextOnSeekBar(boolean fromUser, int progress) {
         if (fromUser && isShowDragProgressTextOnSeekBar) {
-            long duration = getDuration();
+            long duration = getVideoDuration();
             if (mCurrentTimeTextView != null)
                 mCurrentTimeTextView.setText(CommonUtil.stringForTime(progress * duration / 100));
         }
@@ -700,7 +696,7 @@ public abstract class GSYVideoControlView extends GSYVideoView implements View.O
             curHeight = CommonUtil.getCurrentScreenLand((Activity) getActivityContext()) ? mScreenWidth : mScreenHeight;
         }
         if (mChangePosition) {
-            long totalTimeDuration = getDuration();
+            long totalTimeDuration = getVideoDuration();
             mSeekTimePosition = (int) (mDownPosition + (deltaX * totalTimeDuration / curWidth) / mSeekRatio);
             if(mSeekTimePosition < 0) {
                 mSeekTimePosition = 0;
@@ -762,7 +758,7 @@ public abstract class GSYVideoControlView extends GSYVideoView implements View.O
 
     protected void touchSurfaceUp() {
         if (mChangePosition) {
-            long duration = getDuration();
+            long duration = getVideoDuration();
             long progress = mSeekTimePosition * 100 / (duration == 0 ? 1 : duration);
             if (mBottomProgressBar != null)
                 mBottomProgressBar.setProgress((int)progress);
@@ -782,7 +778,7 @@ public abstract class GSYVideoControlView extends GSYVideoView implements View.O
             } catch (Exception e) {
                 e.printStackTrace();
             }
-            long duration = getDuration();
+            long duration = getVideoDuration();
             long progress = mSeekTimePosition * 100 / (duration == 0 ? 1 : duration);
             if (mProgressBar != null) {
                 mProgressBar.setProgress((int)progress);
@@ -946,7 +942,7 @@ public abstract class GSYVideoControlView extends GSYVideoView implements View.O
 
     protected void setTextAndProgress(int secProgress, boolean forceChange) {
         long position = getCurrentPositionWhenPlaying();
-        long duration = getDuration();
+        long duration = getVideoDuration();
         long progress = position * 100 / (duration == 0 ? 1 : duration);
         setProgressAndTime(progress, secProgress, position, duration, forceChange);
     }

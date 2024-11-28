@@ -7,7 +7,6 @@ import android.graphics.Rect;
 import android.graphics.RectF;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
-import android.os.Build;
 import android.os.Handler;
 import android.os.Looper;
 
@@ -779,7 +778,7 @@ public abstract class GSYVideoView extends GSYTextureRenderView implements GSYMe
     /**
      * 获取当前总时长
      */
-    public long getDuration() {
+    public long getVideoDuration() {
         long duration = 0;
         try {
             duration = getGSYVideoManager().getDuration();

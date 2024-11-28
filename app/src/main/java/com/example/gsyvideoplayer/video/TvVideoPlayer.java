@@ -218,7 +218,7 @@ public class TvVideoPlayer extends NormalGSYVideoPlayer {
         if (firstKeyDown) {
             touchSurfaceDown(pointX, pointY);
             firstKeyDown = false;
-            if (mSeekTimePosition >= getDuration() || isPlayComplete) {
+            if (mSeekTimePosition >= getVideoDuration() || isPlayComplete) {
                 //TODO : 暂未有逻辑
             } else {
                 onStartTrackingTouch(mProgressBar);
@@ -240,14 +240,14 @@ public class TvVideoPlayer extends NormalGSYVideoPlayer {
                 touchSurfaceMoveFullLogic(Math.abs(moveX - pointX), 0);
             }
         }
-        if (mSeekTimePosition >= getDuration() || isPlayComplete) {
+        if (mSeekTimePosition >= getVideoDuration() || isPlayComplete) {
             mHandler.sendEmptyMessageDelayed(CANCLE, 1500);
             mBottomContainer.setVisibility(GONE);
         }  else {
             mChangePosition = true;
             touchSurfaceMove(moveX - pointX, 0, pointY);
             mBottomContainer.setVisibility(VISIBLE);
-            onProgressChanged(mProgressBar, (int) (mSeekTimePosition * 100 / getDuration()), true);
+            onProgressChanged(mProgressBar, (int) (mSeekTimePosition * 100 / getVideoDuration()), true);
         }
     }
 

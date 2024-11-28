@@ -8,13 +8,9 @@ import android.transition.Explode;
 import android.view.View;
 import android.view.Window;
 import android.widget.AbsListView;
-import android.widget.FrameLayout;
-import android.widget.ListView;
-import android.widget.RelativeLayout;
 
 import com.example.gsyvideoplayer.adapter.ListVideoAdapter;
 import com.example.gsyvideoplayer.databinding.ActivityListVideo2Binding;
-import com.example.gsyvideoplayer.databinding.ActivityListVideoBinding;
 import com.shuyu.gsyvideoplayer.GSYVideoManager;
 import com.shuyu.gsyvideoplayer.listener.GSYSampleCallBack;
 import com.shuyu.gsyvideoplayer.utils.GSYVideoHelper;
@@ -83,7 +79,7 @@ public class ListVideo2Activity extends AppCompatActivity {
             @Override
             public void onPrepared(String url, Object... objects) {
                 super.onPrepared(url, objects);
-                Debuger.printfLog("Duration " + smallVideoHelper.getGsyVideoPlayer().getDuration() + " CurrentPosition " + smallVideoHelper.getGsyVideoPlayer().getCurrentPositionWhenPlaying());
+                Debuger.printfLog("Duration " + smallVideoHelper.getGsyVideoPlayer().getVideoDuration() + " CurrentPosition " + smallVideoHelper.getGsyVideoPlayer().getCurrentPositionWhenPlaying());
             }
 
             @Override

@@ -6,10 +6,8 @@ import android.os.Bundle;
 import android.transition.Explode;
 import android.view.View;
 import android.view.Window;
-import android.widget.FrameLayout;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -166,7 +164,7 @@ public class RecyclerView3Activity extends AppCompatActivity {
             @Override
             public void onPrepared(String url, Object... objects) {
                 super.onPrepared(url, objects);
-                Debuger.printfLog("Duration " + smallVideoHelper.getGsyVideoPlayer().getDuration() + " CurrentPosition " + smallVideoHelper.getGsyVideoPlayer().getCurrentPositionWhenPlaying());
+                Debuger.printfLog("Duration " + smallVideoHelper.getGsyVideoPlayer().getVideoDuration() + " CurrentPosition " + smallVideoHelper.getGsyVideoPlayer().getCurrentPositionWhenPlaying());
             }
 
             @Override
